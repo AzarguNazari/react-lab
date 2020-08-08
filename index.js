@@ -1,26 +1,15 @@
+import React from "react";
 import ReactDOM from "react-dom";
-import React, { Component } from "react";
-import "bootstrap";
+import "./src/App.css";
+import App from "./src/components/App";
 
-class HomeWindow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: 0,
-      material: "glass",
-      isOpen: false
-    };
-  }
+import { Provider } from "mobx-react";
+import TodoStore from "./src/store/TodoStore";
 
-  render() {
-    return (
-      <div>
-        <p>Total Number of Windws: {this.state.number}</p>
-        <p>is Window Openned {this.state.isOpen}</p>
-        <p>The material windows are made is {this.state.material}</p>
-      </div>
-    );
-  }
-}
+const Root = (
+  <Provider TodoStore={TodoStore}>
+    <App />
+  </Provider>
+);
 
-ReactDOM.render(<HomeWindow />, document.getElementById("root"));
+ReactDOM.render(Root, document.getElementById("root"));
